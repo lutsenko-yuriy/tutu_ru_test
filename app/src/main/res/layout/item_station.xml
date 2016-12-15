@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <TextView
+        android:text="@string/default_station_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:fontFamily="@string/station_font"
+        android:textSize="@dimen/station_title_size"
+        android:textColor="@color/colorText"
+        android:textAlignment="center"
+        android:id="@+id/station_title" />
+
+    <TextView
+        android:text="@string/default_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/station_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/address_margin"
+        android:fontFamily="@string/station_font"
+        android:textSize="@dimen/address_size"
+        android:id="@+id/country_address_header" />
+
+    <TextView
+        android:text="@string/default_country_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/country_address_header"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/address_margin"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:fontFamily="@string/station_font"
+        android:textSize="@dimen/address_size"
+        android:id="@+id/country" />
+
+</RelativeLayout>

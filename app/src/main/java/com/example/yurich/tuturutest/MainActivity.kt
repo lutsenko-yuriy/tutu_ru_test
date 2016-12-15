@@ -10,15 +10,12 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import com.example.yurich.tuturutest.navigation.NavigationManagerImpl
+import com.example.yurich.tuturutest.repository.ScreenChanger
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ScreenChanger {
 
-    val navigationManager = NavigationManagerImpl(supportFragmentManager)
-
-    companion object {
-        private val DEFAULT_SCREEN = 0
-    }
+    val navigationManager = NavigationManagerImpl(supportFragmentManager, this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +29,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
 
         nav_view.setNavigationItemSelectedListener(this)
-        nav_view.menu.getItem(DEFAULT_SCREEN).isChecked = true
 
         if (savedInstanceState == null) {
             navigationManager.getScheduleFragment()
@@ -80,5 +76,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    override fun onScreenChanged(screen: Int) {
+        nav_view.menu.getItem(screen).isChecked = true
     }
 }

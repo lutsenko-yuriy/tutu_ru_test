@@ -34,6 +34,13 @@
         Обновить
     </string>
 
+    <!--Default parameters for screens with listed stations-->
+    <string name="default_station_name">Вокзал</string>
+    <string name="default_country_name">Страна</string>
+    <string name="default_address">Адрес</string>
+    <string name="station_font">sans-serif</string>
+    <string name="group_title">Страна, город</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!--A hint for query search in departure stations screen-->
+    <string name="departure_hint">Введите станцию отправления</string>
 </resources>
