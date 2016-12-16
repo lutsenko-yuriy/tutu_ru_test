@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest.repository
+package com.example.yurich.tuturutest
 
 /**
  * Created by yurich on 14.12.16.

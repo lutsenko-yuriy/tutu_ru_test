@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest
+package com.example.yurich.tuturutest.repository
 
 /**
  * This class describes data transferred from Fragments to model

@@ -2,9 +2,11 @@ package com.example.yurich.tuturutest.departure
 
 import com.arellomobile.mvp.InjectViewState
 import com.example.yurich.tuturutest.SchedulePresenter
-import com.example.yurich.tuturutest.network.City
-import com.example.yurich.tuturutest.network.TutuServerApi
-import com.example.yurich.tuturutest.network.TutuStationsApi
+import com.example.yurich.tuturutest.repository.database.StoragedCity
+import com.example.yurich.tuturutest.repository.database.StoragedEntity
+import com.example.yurich.tuturutest.repository.database.StoragedStation
+import com.example.yurich.tuturutest.repository.network.TutuServerApi
+import com.example.yurich.tuturutest.repository.network.TutuStationsApi
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import rx.Observable
@@ -17,6 +19,7 @@ import rx.schedulers.Schedulers
 @InjectViewState
 class DeparturePresenter : SchedulePresenter() {
 
+    // TODO - put it in model
     var server = TutuStationsApi(
             Retrofit.Builder()
                     .baseUrl("https://raw.githubusercontent.com/tutu-ru/hire_android_test/master/")
@@ -27,27 +30,40 @@ class DeparturePresenter : SchedulePresenter() {
 
     override fun retrieveAndShow() {
 
-        val observable = Observable.create<List<City>> {
+        val observable = Observable.create<List<StoragedEntity>> {
             subscriber ->
 
-            val call = server.getStationsList()
-            val response = call.execute()
+            val serverCall = server.getStationsList()
+            val serverResponse = serverCall.execute()
 
-            if (response.isSuccessful) {
-                val citiesFrom = response.body().citiesFrom
+            // Transform server response to storaged entities
+            // if we received the response successfully
+            if (serverResponse.isSuccessful) {
+                val entitiesFromServer = serverResponse.body().citiesFrom
+                val storagedEntities: MutableList<StoragedEntity> = mutableListOf()
 
-                subscriber.onNext(citiesFrom)
+                for (city in entitiesFromServer) {
+                    storagedEntities.add(StoragedCity(city))
+
+                    city.stations!!.mapTo(storagedEntities) {
+                        StoragedStation(it)
+                    }
+                }
+
+                subscriber.onNext(storagedEntities)
                 subscriber.onCompleted()
             } else {
-                subscriber.onError(Throwable(response.message()))
+                subscriber.onError(Throwable(serverResponse.message()))
             }
         }
 
-        observable.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { viewState.setData(it) },
-                        { viewState.displayError(it) }
-                )
+        subscriptions.add(
+                observable.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(
+                                { viewState.updateStations(it) },
+                                { viewState.displayError(it) }
+                        )
+        )
     }
 }

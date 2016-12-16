@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.example.yurich.tuturutest.R
-import com.example.yurich.tuturutest.network.City
+import com.example.yurich.tuturutest.repository.DataPackage
+import com.example.yurich.tuturutest.repository.database.StoragedEntity
+import com.example.yurich.tuturutest.repository.network.ResponseCity
 
 
 /**
@@ -27,7 +29,7 @@ class ArrivalsFragment : Fragment(), ScheduleView {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun setData(cities: List<City>) {
+    override fun updateStations(entities: List<StoragedEntity>) {
         throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

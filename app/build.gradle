@@ -52,10 +52,6 @@ dependencies {
     compile 'io.reactivex:rxjava:1.2.3'
     compile 'io.reactivex:rxandroid:1.2.1'
 
-    // RecyclerView
-    compile 'com.airbnb.android:epoxy:1.5.0'
-    apt 'com.airbnb.android:epoxy-processor:1.5.0'
-
 }
 repositories {
     mavenCentral()

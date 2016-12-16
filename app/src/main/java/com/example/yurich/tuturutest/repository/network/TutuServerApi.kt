@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest.network
+package com.example.yurich.tuturutest.repository.network
 
 import retrofit2.Call
 import retrofit2.http.GET

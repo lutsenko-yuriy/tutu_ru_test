@@ -5,7 +5,7 @@ import com.example.yurich.tuturutest.CalendarFragment
 import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.departure.DepartureFragment
 import com.example.yurich.tuturutest.information.InfoFragment
-import com.example.yurich.tuturutest.repository.ScreenChanger
+import com.example.yurich.tuturutest.ScreenChanger
 
 /**
  * Created by yurich on 14.12.16.
