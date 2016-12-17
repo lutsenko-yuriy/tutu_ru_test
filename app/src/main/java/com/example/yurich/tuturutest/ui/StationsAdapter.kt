@@ -3,7 +3,7 @@ package com.example.yurich.tuturutest.ui
 import android.support.v4.util.SparseArrayCompat
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.example.yurich.tuturutest.repository.database.StoragedEntity
+import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
 import java.util.*
 
 /**

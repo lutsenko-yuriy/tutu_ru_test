@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest.repository.network
+package com.example.yurich.tuturutest.repository.remote_storage
 
 import retrofit2.Call
 

@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest.repository.network
+package com.example.yurich.tuturutest.repository.remote_storage
 
 import android.text.TextUtils
 
@@ -15,7 +15,7 @@ class ResponseCity(
         val countryTitle: String,
         val districtTitle: String?,
         val cityId: Long,
-        val cityTitle: String?,
+        val cityTitle: String,
         val regionTitle: String?,
 
         val stations: List<ResponseStation>?
@@ -25,7 +25,7 @@ class ResponseStation(
         val countryTitle: String,
         val districtTitle: String?,
         val cityId: Long,
-        val cityTitle: String?,
+        val cityTitle: String,
         val regionTitle: String?,
 
         val stationId: Long,

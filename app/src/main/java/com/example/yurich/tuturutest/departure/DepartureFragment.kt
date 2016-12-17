@@ -11,8 +11,10 @@ import com.arellomobile.mvp.MvpAppCompatFragment
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.ScheduleView
+import com.example.yurich.tuturutest.StationsApp
+import com.example.yurich.tuturutest.di.AppComponent
 import com.example.yurich.tuturutest.repository.DataPackage
-import com.example.yurich.tuturutest.repository.database.StoragedEntity
+import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
 import com.example.yurich.tuturutest.ui.StationsAdapter
 import kotlinx.android.synthetic.main.fragment_stations_list.*
 

@@ -10,13 +10,13 @@ import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import com.example.yurich.tuturutest.navigation.NavigationManagerImpl
-import com.example.yurich.tuturutest.ScreenChanger
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ScreenChanger {
 
     val navigationManager = NavigationManagerImpl(supportFragmentManager, this)
 
+    @SuppressWarnings("deprecated")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

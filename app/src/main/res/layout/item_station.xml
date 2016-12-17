@@ -1,42 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/station_card_space"
+    android:layout_marginStart="@dimen/station_card_space"
+    android:layout_marginEnd="@dimen/station_card_space"
+    app:cardElevation="@dimen/station_card_elevation" >
 
-    <TextView
-        android:text="@string/default_station_name"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:fontFamily="@string/station_font"
-        android:textSize="@dimen/station_title_size"
-        android:textColor="@color/colorText"
-        android:textAlignment="center"
-        android:id="@+id/station_title" />
+        android:background="?attr/selectableItemBackground"
+        android:layout_marginStart="@dimen/address_margin"
+        android:layout_marginEnd="@dimen/address_margin">
 
-    <TextView
-        android:text="@string/default_address"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/station_title"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/address_margin"
-        android:fontFamily="@string/station_font"
-        android:textSize="@dimen/address_size"
-        android:textAlignment="center"
-        android:id="@+id/address_header" />
+        <TextView
+            android:text="@string/default_station_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:fontFamily="@string/station_font"
+            android:textSize="@dimen/station_title_size"
+            android:textColor="@color/colorText"
+            android:textAlignment="center"
+            android:id="@+id/station_title" />
 
-    <TextView
-        android:text="@string/default_country_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/address_header"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/address_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:fontFamily="@string/station_font"
-        android:textSize="@dimen/address_size"
-        android:textAlignment="center"
-        android:id="@+id/country" />
+        <TextView
+            android:text="@string/default_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/station_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/address_margin"
+            android:fontFamily="@string/station_font"
+            android:textSize="@dimen/address_size"
+            android:textAlignment="center"
+            android:id="@+id/address_header" />
 
-</RelativeLayout>
+        <TextView
+            android:text="@string/default_country_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/address_header"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/address_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:fontFamily="@string/station_font"
+            android:textSize="@dimen/address_size"
+            android:textAlignment="center"
+            android:id="@+id/country" />
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

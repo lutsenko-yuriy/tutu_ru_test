@@ -2,15 +2,18 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
-    <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
-    <!--ResponseStation characteristics-->
+    <!--Station characteristics-->
     <dimen name="station_margin">16dp</dimen>
     <dimen name="address_margin">4dp</dimen>
     <dimen name="station_title_size">24sp</dimen>
     <dimen name="address_size">16sp</dimen>
-    <dimen name="group_title_margin_bottom">8dp</dimen>
-    <dimen name="group_title_margin_start">8dp</dimen>
+    <dimen name="station_card_space">8dp</dimen>
+    <dimen name="station_card_elevation">4dp</dimen>
+
+    <!--Header margins-->
+    <dimen name="header_top_margin">24dp</dimen>
+    <dimen name="header_bottom_margin">4dp</dimen>
 </resources>

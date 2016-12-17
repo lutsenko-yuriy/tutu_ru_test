@@ -6,11 +6,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.repository.DataPackage
-import com.example.yurich.tuturutest.repository.database.StoragedEntity
-import com.example.yurich.tuturutest.repository.network.ResponseCity
+import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
 
 
 /**

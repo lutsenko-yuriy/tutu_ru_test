@@ -3,8 +3,8 @@ package com.example.yurich.tuturutest.ui
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.example.yurich.tuturutest.R
-import com.example.yurich.tuturutest.repository.database.StoragedCity
-import com.example.yurich.tuturutest.repository.database.StoragedEntity
+import com.example.yurich.tuturutest.repository.local_storage.StoragedCity
+import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
 import com.example.yurich.tuturutest.utils.inflate
 import kotlinx.android.synthetic.main.item_header.view.*
 

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/address_header"
-    android:text="@string/group_title"
-    android:layout_gravity="start"
-    android:layout_marginTop="@dimen/activity_vertical_margin"
-    android:layout_marginBottom="@dimen/group_title_margin_bottom"
-    android:layout_marginStart="@dimen/group_title_margin_start"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginTop="@dimen/header_top_margin"
+    android:layout_marginBottom="@dimen/header_bottom_margin">
+
+    <TextView
+        android:id="@+id/address_header"
+        android:text="@string/group_title"
+        android:layout_gravity="center"
+        android:textColor="@color/colorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</FrameLayout>
