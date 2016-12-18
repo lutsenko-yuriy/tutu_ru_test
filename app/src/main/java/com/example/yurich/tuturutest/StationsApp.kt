@@ -2,7 +2,7 @@ package com.example.yurich.tuturutest
 
 import android.app.Application
 import com.example.yurich.tuturutest.di.AppComponent
-import com.example.yurich.tuturutest.di.AppModule
+import com.example.yurich.tuturutest.di.Modules.AppModule
 import com.example.yurich.tuturutest.di.DaggerAppComponent
 
 /**

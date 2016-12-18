@@ -2,7 +2,7 @@ package com.example.yurich.tuturutest.repository.local_storage.database.resolver
 
 import com.example.yurich.tuturutest.repository.local_storage.StoragedCity
 import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
-import com.example.yurich.tuturutest.repository.local_storage.database.CitiesTable
+import com.example.yurich.tuturutest.repository.local_storage.database.StationsTable
 import com.pushtorefresh.storio.sqlite.StorIOSQLite
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResolver
 import com.pushtorefresh.storio.sqlite.operations.delete.DeleteResult
@@ -24,6 +24,6 @@ class StationDeleteResolver : DeleteResolver<StoragedStation>() {
                     result = it
                 }
 
-        return DeleteResult.newInstance(result.numberOfRowsDeleted(), CitiesTable.TABLE)
+        return DeleteResult.newInstance(result.numberOfRowsDeleted(), StationsTable.TABLE)
     }
 }

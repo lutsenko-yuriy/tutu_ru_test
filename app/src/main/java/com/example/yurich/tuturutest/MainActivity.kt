@@ -2,6 +2,7 @@ package com.example.yurich.tuturutest
 
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.design.widget.Snackbar
 import android.support.v4.view.GravityCompat
 import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
@@ -11,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.yurich.tuturutest.navigation.NavigationManagerImpl
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener, ScreenChanger {
 
@@ -31,7 +33,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         nav_view.setNavigationItemSelectedListener(this)
 
         if (savedInstanceState == null) {
-            navigationManager.getScheduleFragment()
+            setDefaultFragment()
         }
     }
 
@@ -58,6 +60,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         if (id == R.id.action_refresh) {
+            Snackbar.make(placeholder, "Продолжение следует...", Snackbar.LENGTH_LONG).show()
             return true
         }
 
@@ -76,6 +79,10 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    fun setDefaultFragment() {
+        navigationManager.getScheduleFragment()
     }
 
     override fun onScreenChanged(screen: Int) {

@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest.di
+package com.example.yurich.tuturutest.di.Modules
 
 import dagger.Module
 import dagger.Provides

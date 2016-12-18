@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest.ui
+package com.example.yurich.tuturutest.ui.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup

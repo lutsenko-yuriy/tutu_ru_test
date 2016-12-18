@@ -3,16 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.yurich.tuturutest.departure.DepartureFragment">
+    tools:context=".schedule.ScheduleFragment.departure.DepartureFragment">
 
-    <SearchView
+    <EditText
         android:id="@+id/search_field"
-        android:queryHint="@string/departure_hint"
+        android:hint="@string/departure_hint"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:maxLines="1" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/departure_stations"
+        android:id="@+id/list_of_stations"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

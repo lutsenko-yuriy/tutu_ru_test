@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yurich.tuturutest.CalendarFragment">
+    tools:context=".schedule.ScheduleFragment.date.CalendarFragment">
 
     <CalendarView
         android:id="@+id/calendar"

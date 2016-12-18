@@ -1,10 +1,12 @@
 package com.example.yurich.tuturutest.repository
 
-import com.example.yurich.tuturutest.repository.RetrieveSpecification.SpecOptions.FROM_SERVER
+import android.content.Context
+import android.util.Log
 import com.example.yurich.tuturutest.repository.local_storage.LocalDataStorage
-import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
+import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
 import com.example.yurich.tuturutest.repository.remote_storage.RemoteDataStorage
 import rx.Observable
+import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,10 +18,33 @@ class Repository @Inject constructor(
         val remoteDataStorage: RemoteDataStorage,
         val localDataStorage: LocalDataStorage
 ) {
-    fun getStations(specification: RetrieveSpecification): Observable<List<StoragedEntity>> {
-        if (specification.source == FROM_SERVER) {
-            return remoteDataStorage.getStations(specification.direction)
-        }
-        throw Throwable("Wait for it! Local DB is not implemented yet!")
+
+    fun getStations(): Observable<List<StoragedStation>> {
+            val observable = getDataFromServer()
+
+            return observable
+    }
+
+    private fun refreshDatabase(observable: Observable<List<StoragedStation>>) {
+        observable
+                .subscribe (
+                        {
+                            localDataStorage.putStations(it)
+                        }
+                )
+    }
+
+    private fun getDataFromServer(): Observable<List<StoragedStation>> {
+        // This observable already works on
+        // Schedulers.io()
+        return remoteDataStorage
+                .getStations()
+    }
+
+    private fun getDataFromDatabase(): Observable<List<StoragedStation>> {
+        // This observable already works on
+        // Schedulers.io()
+        return localDataStorage
+                .getStations()
     }
 }

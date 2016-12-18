@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest.di
+package com.example.yurich.tuturutest.di.Modules
 
 import com.example.yurich.tuturutest.repository.remote_storage.StationsApi
 import com.example.yurich.tuturutest.repository.remote_storage.TutuServerApi

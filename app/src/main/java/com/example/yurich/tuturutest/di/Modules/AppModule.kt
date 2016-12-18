@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest.di
+package com.example.yurich.tuturutest.di.Modules
 
 import android.content.Context
 import com.example.yurich.tuturutest.StationsApp

@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteOpenHelper
 class StationsDbHelper(val context: Context) : SQLiteOpenHelper(context, "Stations", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase) {
-        db.execSQL(CitiesTable.getCreateTableQuery())
         db.execSQL(StationsTable.getCreateTableQuery())
     }
 

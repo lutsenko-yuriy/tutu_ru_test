@@ -50,8 +50,7 @@ object StationsTable {
                 "$COLUMN_REGION TEXT, " +
                 "$COLUMN_ID INTEGER PRIMARY KEY, " +
                 "$COLUMN_STATION TEXT NOT NULL," +
-                "$COLUMN_DIRECTION INTEGER NOT NULL," +
-                "FOREIGN KEY($COLUMN_CITY_ID) REFERENCES ${CitiesTable.TABLE}(${CitiesTable.COLUMN_ID})" +
+                "$COLUMN_DIRECTION INTEGER NOT NULL" +
                 ");"
     }
 }

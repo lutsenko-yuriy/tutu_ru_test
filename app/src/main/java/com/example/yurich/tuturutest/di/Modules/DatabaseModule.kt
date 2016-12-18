@@ -1,4 +1,4 @@
-package com.example.yurich.tuturutest.di
+package com.example.yurich.tuturutest.di.Modules
 
 import android.content.Context
 import android.database.sqlite.SQLiteOpenHelper
@@ -27,14 +27,6 @@ class DatabaseModule {
     fun provideDatabase(sqLiteOpenHelper: SQLiteOpenHelper): StorIOSQLite {
         return DefaultStorIOSQLite.builder()
                 .sqliteOpenHelper(sqLiteOpenHelper)
-                .addTypeMapping(
-                        StoragedCity::class.java,
-                        SQLiteTypeMapping.builder<StoragedCity>()
-                                .putResolver(CityPutResolver())
-                                .getResolver(CityGetResolver())
-                                .deleteResolver(CityDeleteResolver())
-                                .build()
-                )
                 .addTypeMapping(
                         StoragedStation::class.java,
                         SQLiteTypeMapping.builder<StoragedStation>()

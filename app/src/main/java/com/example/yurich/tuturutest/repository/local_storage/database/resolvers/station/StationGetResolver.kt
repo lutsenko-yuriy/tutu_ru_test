@@ -3,7 +3,6 @@ package com.example.yurich.tuturutest.repository.local_storage.database.resolver
 import android.database.Cursor
 import com.example.yurich.tuturutest.repository.local_storage.StoragedCity
 import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
-import com.example.yurich.tuturutest.repository.local_storage.database.CitiesTable
 import com.example.yurich.tuturutest.repository.local_storage.database.StationsTable
 import com.pushtorefresh.storio.sqlite.operations.get.DefaultGetResolver
 

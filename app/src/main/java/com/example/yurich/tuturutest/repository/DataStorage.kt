@@ -1,6 +1,7 @@
 package com.example.yurich.tuturutest.repository
 
 import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
+import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
 import rx.Observable
 
 /**
@@ -8,8 +9,8 @@ import rx.Observable
  */
 interface DataStorage {
 
-    fun getStations(direction: Int, query: String = ""): Observable<List<StoragedEntity>>
+    fun getStations(): Observable<List<StoragedStation>>
 
-    fun putStations(listOfEntities: List<StoragedEntity>)
+    fun putStations(listOfStations: List<StoragedStation>)
 
 }
