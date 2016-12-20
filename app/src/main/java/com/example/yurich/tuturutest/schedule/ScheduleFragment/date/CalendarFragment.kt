@@ -55,7 +55,15 @@ class CalendarFragment : MvpAppCompatFragment(), ScheduleView {
         // Nothing to do here
     }
 
-    override fun displayError(it: Throwable) {
+    override fun displayStations(entities: List<StoragedEntity>) {
+        // Nothing to do here
+    }
+
+    override fun setupStations(entities: List<StoragedEntity>) {
+        // Nothing to do here
+    }
+
+    override fun displayError(it: String) {
         // Nothing to do here
     }
 

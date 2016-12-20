@@ -20,6 +20,10 @@ abstract class StoragedEntity() {
     }
 
     abstract fun getType(): Int
+
+    abstract fun getAddress(): String
+
+    abstract fun getEntityId(): Long
 }
 
 class StoragedCity(
@@ -29,15 +33,6 @@ class StoragedCity(
         val cityTitle: String,
         val regionTitle: String?
 ) : StoragedEntity() {
-
-    constructor(city: ResponseCity) :
-            this(
-                    city.countryTitle,
-                    city.districtTitle,
-                    city.cityId,
-                    city.cityTitle,
-                    city.regionTitle
-            )
 
     constructor(station: StoragedStation) :
             this(
@@ -50,7 +45,7 @@ class StoragedCity(
 
     override fun getType(): Int = Types.CITY
 
-    fun getAddress(): String {
+    override fun getAddress(): String {
         val builder = StringBuilder()
 
         appendField(countryTitle, builder)
@@ -59,9 +54,8 @@ class StoragedCity(
         return builder.toString().substring(2)
     }
 
-    override fun equals(other: Any?): Boolean {
-        return other is StoragedCity
-                && this.cityId == other.cityId
+    override fun getEntityId(): Long {
+        return cityId shl 1 or getType().toLong()
     }
 }
 
@@ -103,7 +97,7 @@ class StoragedStation(
 
     override fun getType() = Types.STATION
 
-    fun getAddress(): String {
+    override fun getAddress(): String {
 
         val builder = StringBuilder()
 
@@ -124,6 +118,10 @@ class StoragedStation(
         appendField(countryTitle, builder)
 
         return builder.toString().substring(2)
+    }
+
+    override fun getEntityId(): Long {
+        return stationId shl 1 or getType().toLong()
     }
 
 }

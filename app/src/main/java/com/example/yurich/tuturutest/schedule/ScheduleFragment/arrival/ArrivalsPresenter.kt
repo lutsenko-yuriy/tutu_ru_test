@@ -1,15 +1,15 @@
 package com.example.yurich.tuturutest.schedule.ScheduleFragment.arrival
 
+import android.text.TextUtils
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
-import com.example.yurich.tuturutest.mvp.SchedulePresenter
 import com.example.yurich.tuturutest.StationsApp
+import com.example.yurich.tuturutest.mvp.SchedulePresenter
 import com.example.yurich.tuturutest.repository.Repository
 import com.example.yurich.tuturutest.repository.ResultQuery
 import com.example.yurich.tuturutest.repository.local_storage.StoragedCity
 import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
 import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
-import com.example.yurich.tuturutest.result_alert_dialog_fragment.ResultAlertDialogFragment
 import com.example.yurich.tuturutest.utils.DirectionConstants
 import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
@@ -30,20 +30,22 @@ class ArrivalsPresenter : SchedulePresenter() {
         StationsApp.appComponent.inject(this)
     }
 
-    override fun retrieveAndShow() {
+    override fun retrieveAndShow(needle: String) {
 
         val mapper = rx.functions.Func1<List<StoragedStation>, List<StoragedEntity>>  {
             listOfStations ->
 
             val listOfArrivalStations = listOfStations.filter {
-                it.direction == DirectionConstants.DEPARTURE
+                it.direction == DirectionConstants.ARRIVAL
+                && (TextUtils.isEmpty(needle)
+                        || it.stationTitle.contains(needle, true))
             }
 
             var currentCity = StoragedCity(listOfArrivalStations[0])
             val listOfEntities = mutableListOf<StoragedEntity>(currentCity)
 
             for (station in listOfArrivalStations) {
-                if (currentCity != StoragedCity(station)) {
+                if (currentCity.cityId != StoragedCity(station).cityId) {
                     currentCity = StoragedCity(station)
                     listOfEntities.add(currentCity)
                 }
@@ -59,8 +61,8 @@ class ArrivalsPresenter : SchedulePresenter() {
                         .map(mapper)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
-                                { viewState.updateStations(it) },
-                                { viewState.displayError(it) }
+                                { viewState.displayStations(it) },
+                                { viewState.displayError("Не удалось найти станции") }
                         )
         )
     }

@@ -58,36 +58,40 @@ class ArrivalsFragment : MvpAppCompatFragment(), ScheduleView, OnStationListener
                     }
 
                     override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                        findStations(p0.toString())
+                        presenter.retrieveAndShow(p0.toString())
                     }
 
                 }
         )
     }
 
-    private fun findStations(needle: String) {
-        list_of_stations.apply {
-            (layoutManager as LinearLayoutManager).scrollToPositionWithOffset(
-                    (adapter as StationsAdapter).find(
-                            needle,
-                            (layoutManager as LinearLayoutManager).findLastCompletelyVisibleItemPosition()
-                    ), 0
-            )
+    override fun displayStations(entities: List<StoragedEntity>) {
+        if ((list_of_stations.adapter as StationsAdapter).itemCount > 0) {
+            updateStations(entities)
+        } else {
+            setupStations(entities)
         }
+    }
+
+    override fun setupStations(entities: List<StoragedEntity>) {
+        (list_of_stations.adapter as StationsAdapter).setupStations(entities)
     }
 
     override fun updateStations(entities: List<StoragedEntity>) {
         (list_of_stations.adapter as StationsAdapter).updateStations(entities)
     }
 
-    override fun displayError(it: Throwable) {
-        Snackbar.make(list_of_stations, it.message!!, Snackbar.LENGTH_LONG).show()
+
+    override fun displayError(it: String) {
+        Snackbar.make(list_of_stations, it, Snackbar.LENGTH_LONG).show()
     }
 
-    override fun passStation(station: StoragedStation) {
+
+    override fun onStationClicked(station: StoragedStation) {
         presenter.passStation(station)
         Snackbar.make(list_of_stations, "Станция прибытия успешно добавлена", Snackbar.LENGTH_LONG).show()
     }
+
 
     override fun displayResult(query: ResultQuery) {
         ResultAlertDialogFragment(query).show(activity.fragmentManager, null)

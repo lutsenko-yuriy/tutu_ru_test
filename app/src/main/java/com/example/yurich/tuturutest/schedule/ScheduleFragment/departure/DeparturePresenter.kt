@@ -1,9 +1,10 @@
 package com.example.yurich.tuturutest.schedule.ScheduleFragment.departure
 
+import android.text.TextUtils
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
-import com.example.yurich.tuturutest.mvp.SchedulePresenter
 import com.example.yurich.tuturutest.StationsApp
+import com.example.yurich.tuturutest.mvp.SchedulePresenter
 import com.example.yurich.tuturutest.repository.Repository
 import com.example.yurich.tuturutest.repository.ResultQuery
 import com.example.yurich.tuturutest.repository.local_storage.StoragedCity
@@ -29,20 +30,22 @@ class DeparturePresenter() : SchedulePresenter() {
         StationsApp.appComponent.inject(this)
     }
 
-    override fun retrieveAndShow() {
+    override fun retrieveAndShow(needle: String) {
 
         val mapper = rx.functions.Func1<List<StoragedStation>, List<StoragedEntity>>  {
             listOfStations ->
 
             val listOfDepartureStations = listOfStations.filter {
                 it.direction == DEPARTURE
+                        && (TextUtils.isEmpty(needle)
+                            || it.stationTitle.contains(needle, true))
             }
 
             var currentCity = StoragedCity(listOfDepartureStations[0])
             val listOfEntities = mutableListOf<StoragedEntity>(currentCity)
 
             for (station in listOfDepartureStations) {
-                if (currentCity != StoragedCity(station)) {
+                if (currentCity.cityId != StoragedCity(station).cityId) {
                     currentCity = StoragedCity(station)
                     listOfEntities.add(currentCity)
                 }
@@ -58,8 +61,8 @@ class DeparturePresenter() : SchedulePresenter() {
                         .map(mapper)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
-                                { viewState.updateStations(it) },
-                                { viewState.displayError(it) }
+                                { viewState.displayStations(it) },
+                                { viewState.displayError("Не удалось найти станции") }
                         )
         )
     }

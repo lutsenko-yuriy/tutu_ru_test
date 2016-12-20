@@ -1,9 +1,6 @@
 package com.example.yurich.tuturutest.ui.adapters
 
-import android.content.Context.VIBRATOR_SERVICE
-import android.os.Vibrator
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.view.ViewGroup
 import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
@@ -29,7 +26,7 @@ class StationAdapterDelegate(val listener: OnStationListener) : AbstractAdapterD
     ) {
         fun bind(item: StoragedStation) = with(itemView) {
             setOnClickListener {
-                listener.passStation(item)
+                listener.onStationClicked(item)
             }
             station_title.text = item.stationTitle
             address_header.text = item.getAddress()

@@ -1,7 +1,6 @@
 package com.example.yurich.tuturutest.mvp
 
 import com.arellomobile.mvp.MvpView
-import com.example.yurich.tuturutest.repository.DataPackage
 import com.example.yurich.tuturutest.repository.ResultQuery
 import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
 
@@ -10,9 +9,11 @@ import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
  */
 interface ScheduleView : MvpView {
 
+    fun displayStations(entities: List<StoragedEntity>)
     fun updateStations(entities: List<StoragedEntity>)
+    fun setupStations(entities: List<StoragedEntity>)
 
-    fun displayError(it: Throwable)
+    fun displayError(it: String)
 
     fun displayResult(query: ResultQuery)
 
