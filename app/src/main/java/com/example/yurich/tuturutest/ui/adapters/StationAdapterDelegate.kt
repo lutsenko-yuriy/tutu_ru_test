@@ -1,5 +1,7 @@
 package com.example.yurich.tuturutest.ui.adapters
 
+import android.content.Context
+import android.os.Vibrator
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.example.yurich.tuturutest.R
@@ -26,6 +28,8 @@ class StationAdapterDelegate(val listener: OnStationListener) : AbstractAdapterD
     ) {
         fun bind(item: StoragedStation) = with(itemView) {
             setOnClickListener {
+                (context.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator)
+                        .vibrate((10))
                 listener.onStationClicked(item)
             }
             station_title.text = item.stationTitle

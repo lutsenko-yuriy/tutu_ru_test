@@ -14,54 +14,13 @@ import javax.inject.Singleton
 @Singleton
 class RemoteDataStorage @Inject constructor(val server: StationsApi) {
 
-    public fun getStations(): Observable<List<StoragedStation>> {
+    fun getStations(): Observable<List<StoragedStation>> {
 
-        val observable = Observable.create<List<StoragedStation>> {
-            subscriber ->
-
-            val serverCall = server.getStationsList()
-            val serverResponse = serverCall.execute()
-
-            // Transform server response to storaged stations
-            // if we received the response successfully
-            if (serverResponse.isSuccessful) {
-                val storagedStations = mutableListOf<StoragedStation>()
-                storagedStations.addAll(getDepartureStations(serverResponse.body()))
-                storagedStations.addAll(getArrivalStations(serverResponse.body()))
-
-                subscriber.onNext(storagedStations)
-                subscriber.onCompleted()
-            } else {
-                subscriber.onError(Throwable(serverResponse.message()))
-            }
-        }
+        val observable = server.getStationsList()
+                .map(ServerResponse::getStoragedStations)
 
         return observable
                 .subscribeOn(Schedulers.io())
     }
 
-}
-
-
-// Filters to get stations with specific direction
-fun getDepartureStations(response: ServerResponse): List<StoragedStation> {
-    val entitiesFromServer = response.citiesFrom
-    return getEntities(entitiesFromServer, DEPARTURE)
-}
-
-fun getArrivalStations(response: ServerResponse): List<StoragedStation> {
-    val entitiesFromServer = response.citiesTo
-    return getEntities(entitiesFromServer, ARRIVAL)
-}
-
-fun getEntities(entitiesFromServer: List<ResponseCity>, direction: Int = DEPARTURE): MutableList<StoragedStation> {
-    val storagedStations: MutableList<StoragedStation> = mutableListOf()
-
-    for (city in entitiesFromServer) {
-        city.stations!!.mapTo(storagedStations) {
-            StoragedStation(it, direction)
-        }
-    }
-
-    return storagedStations
 }

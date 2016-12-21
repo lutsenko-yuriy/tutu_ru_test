@@ -15,6 +15,7 @@ import com.example.yurich.tuturutest.repository.ResultQuery
 import com.example.yurich.tuturutest.repository.local_storage.StoragedEntity
 import com.example.yurich.tuturutest.result_alert_dialog_fragment.ResultAlertDialogFragment
 import kotlinx.android.synthetic.main.fragment_calendar.*
+import kotlinx.android.synthetic.main.fragment_stations_list.*
 import java.util.*
 
 
@@ -42,8 +43,6 @@ class CalendarFragment : MvpAppCompatFragment(), ScheduleView {
             val chosenDate = GregorianCalendar(year, month, day)
             calendar.date = chosenDate.timeInMillis
             presenter.passDate(chosenDate)
-
-            Snackbar.make(calendarView, "Дата успешно добавлена", Snackbar.LENGTH_LONG).show()
         }
     }
 

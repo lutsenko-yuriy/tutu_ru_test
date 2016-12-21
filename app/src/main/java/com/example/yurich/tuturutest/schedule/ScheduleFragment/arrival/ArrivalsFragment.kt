@@ -44,7 +44,6 @@ class ArrivalsFragment : MvpAppCompatFragment(), ScheduleView, OnStationListener
             layoutManager = LinearLayoutManager(activity)
 
             adapter = StationsAdapter(this@ArrivalsFragment)
-            presenter.retrieveAndShow()
         }
 
         search_field.addTextChangedListener(

@@ -16,4 +16,7 @@
     <!--Header margins-->
     <dimen name="header_top_margin">24dp</dimen>
     <dimen name="header_bottom_margin">4dp</dimen>
+
+    <!--Option chosen badge-->
+    <dimen name="option_chosen_height">36dp</dimen>
 </resources>

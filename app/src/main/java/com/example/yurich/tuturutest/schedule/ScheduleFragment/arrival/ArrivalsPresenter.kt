@@ -74,4 +74,6 @@ class ArrivalsPresenter : SchedulePresenter() {
             viewState.displayResult(resultQuery)
         }
     }
+
+    fun  isArrivalStationChosen() = resultQuery.arrivalStation != null
 }

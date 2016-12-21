@@ -34,4 +34,6 @@ class CalendarPresenter : MvpPresenter<ScheduleView>() {
             viewState.displayResult(resultQuery)
         }
     }
+
+    fun  isDateChosen() = resultQuery.date != null
 }

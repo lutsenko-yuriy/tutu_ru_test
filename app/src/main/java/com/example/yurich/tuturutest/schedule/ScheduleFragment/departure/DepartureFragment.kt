@@ -1,7 +1,9 @@
 package com.example.yurich.tuturutest.schedule.ScheduleFragment.departure
 
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Vibrator
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
 import android.text.Editable
@@ -45,7 +47,6 @@ class DepartureFragment : MvpAppCompatFragment(), ScheduleView, OnStationListene
             layoutManager = LinearLayoutManager(activity)
 
             adapter = StationsAdapter(this@DepartureFragment)
-            presenter.retrieveAndShow()
         }
 
         search_field.addTextChangedListener(

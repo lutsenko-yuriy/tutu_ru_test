@@ -18,6 +18,10 @@ abstract class SchedulePresenter : MvpPresenter<ScheduleView>() {
         super.detachView(view)
     }
 
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        retrieveAndShow()
+    }
     abstract fun retrieveAndShow(needle: String = "")
 
     abstract fun passStation(station: StoragedStation)

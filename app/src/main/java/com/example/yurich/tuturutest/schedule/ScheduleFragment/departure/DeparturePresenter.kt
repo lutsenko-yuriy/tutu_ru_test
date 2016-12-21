@@ -1,5 +1,6 @@
 package com.example.yurich.tuturutest.schedule.ScheduleFragment.departure
 
+import android.support.design.R.styleable.View
 import android.text.TextUtils
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
@@ -74,4 +75,6 @@ class DeparturePresenter() : SchedulePresenter() {
 
         }
     }
+
+    fun  isDepartureStationChosen() = resultQuery.departureStation != null
 }
