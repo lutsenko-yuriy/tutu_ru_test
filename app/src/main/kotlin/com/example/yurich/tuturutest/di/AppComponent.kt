@@ -1,12 +1,7 @@
 package com.example.yurich.tuturutest.di
 
 import com.example.yurich.tuturutest.di.Modules.*
-import com.example.yurich.tuturutest.mvp.SchedulePresenter
-import com.example.yurich.tuturutest.schedule.ScheduleFragment.arrival.ArrivalsPresenter
-import com.example.yurich.tuturutest.schedule.ScheduleFragment.date.CalendarPresenter
-import com.example.yurich.tuturutest.schedule.ScheduleFragment.departure.DeparturePresenter
 import dagger.Component
-import dagger.Subcomponent
 import javax.inject.Singleton
 
 /**
@@ -16,6 +11,7 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(
         AppModule::class,
         NetworkModule::class,
+        DatabaseModule::class,
         RemoteStorageModule::class,
         ResultQueryModule::class
 ))

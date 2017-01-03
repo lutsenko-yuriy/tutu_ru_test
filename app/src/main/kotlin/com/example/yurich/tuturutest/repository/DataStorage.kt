@@ -1,6 +1,7 @@
 package com.example.yurich.tuturutest.repository
 
 import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
+import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedStation
 import rx.Observable
 
 /**

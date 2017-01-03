@@ -11,6 +11,7 @@ import com.example.yurich.tuturutest.utils.fromLocalDb
 import com.example.yurich.tuturutest.utils.isDbReseted
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -24,14 +25,16 @@ class Repository @Inject constructor(
         val localDataStorage: LocalDataStorage
 ) {
 
-    fun getStations(loadFromLocalDb: Boolean = true): Observable<StoragedStation> {
-            return if (loadFromLocalDb) {
-                getDataFromDatabase()
-            } else {
-                getDataFromServerAndUpdateDatabase()
-            }.doOnError {
-                Log.v("REPOSITORY", it.message)
-            }
+    fun getStations(loadFromLocalDb: Boolean = true): Observable<DisplayedStation> {
+        val observable = if (loadFromLocalDb) {
+            getDataFromDatabase()
+        } else {
+            getDataFromServerAndUpdateDatabase()
+        }
+        return observable.doOnError {
+                    Log.v("REPOSITORY", it.message)
+                }
+                .map(::DisplayedStation)
     }
 
     private fun getDataFromServerAndUpdateDatabase(): Observable<StoragedStation> {
@@ -45,8 +48,6 @@ class Repository @Inject constructor(
     }
 
     private fun getDataFromDatabase(): Observable<StoragedStation> {
-        // This observable already works on
-        // Schedulers.io()
         Log.v("REPOSITORY", "Loading from local storage")
         return localDataStorage
                 .getStations()

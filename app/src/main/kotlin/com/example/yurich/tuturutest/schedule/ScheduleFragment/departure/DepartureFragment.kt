@@ -53,7 +53,9 @@ class DepartureFragment : MvpAppCompatFragment(), ScheduleView, OnStationListene
     }
 
     override fun onPause() {
-        subscriptions.unsubscribe()
+        if (!subscriptions.hasSubscriptions()) {
+            subscriptions.unsubscribe()
+        }
         super.onPause()
     }
 

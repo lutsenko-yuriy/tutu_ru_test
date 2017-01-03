@@ -12,10 +12,10 @@ abstract class SchedulePresenter : MvpPresenter<ScheduleView>() {
     var subscriptions = CompositeSubscription()
 
     override fun detachView(view: ScheduleView?) {
-        super.detachView(view)
         if (!subscriptions.isUnsubscribed) {
             subscriptions.unsubscribe()
         }
+        super.detachView(view)
     }
 
     override fun onFirstViewAttach() {

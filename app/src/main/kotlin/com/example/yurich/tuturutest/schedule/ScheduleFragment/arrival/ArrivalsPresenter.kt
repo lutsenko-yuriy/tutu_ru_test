@@ -6,7 +6,6 @@ import com.arellomobile.mvp.InjectViewState
 import com.example.yurich.tuturutest.mvp.SchedulePresenter
 import com.example.yurich.tuturutest.repository.Repository
 import com.example.yurich.tuturutest.repository.ResultQuery
-import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
 import com.example.yurich.tuturutest.schedule.MainActivity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedCity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
@@ -32,7 +31,6 @@ class ArrivalsPresenter : SchedulePresenter() {
     }
 
     override fun retrieveAndShow(needle: String) {
-        val mapper = rx.functions.Func1<StoragedStation, DisplayedStation>(::DisplayedStation)
         val listOfEntities = mutableListOf<DisplayedEntity>()
         var currentCity: DisplayedCity? = null
 
@@ -43,7 +41,6 @@ class ArrivalsPresenter : SchedulePresenter() {
                                     && (TextUtils.isEmpty(needle)
                                     || it.stationTitle.contains(needle, true))
                         }
-                        .map(mapper)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe(
                                 {

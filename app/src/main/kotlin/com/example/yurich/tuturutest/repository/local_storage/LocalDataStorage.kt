@@ -4,7 +4,6 @@ import com.example.yurich.tuturutest.repository.DataStorage
 import io.realm.Realm
 import io.realm.RealmResults
 import rx.Observable
-import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -18,35 +17,47 @@ class LocalDataStorage @Inject constructor() : DataStorage {
     var realm: Realm? = null
 
     override fun getStations(): Observable<StoragedStation> {
-        realm = Realm.getDefaultInstance()
         return Observable.create<RealmResults<StoragedStation>> {
-                    subscriber ->
-                    realm = Realm.getDefaultInstance()
-                    subscriber.onNext(
-                            realm!!.where(StoragedStation::class.java)
-                                    .findAll()
-                    )
-                    subscriber.onCompleted()
-                }
-                .concatMap {
-                    Observable.from(it)
-                }
-                .subscribeOn(Schedulers.io())
+            subscriber ->
+
+            try {
+                realm = getRealmInstance()
+                subscriber.onNext(
+                        realm!!.where(StoragedStation::class.java)
+                                .findAll()
+                )
+                subscriber.onCompleted()
+            } catch (e: Throwable) {
+                subscriber.onError(e)
+            }
+        }.concatMap {
+            Observable.from(it)
+        }.doOnCompleted {
+            closeRealmInstance()
+        }.doOnError {
+            closeRealmInstance()
+        }
     }
 
     override fun putStation(station: StoragedStation) {
-        realm = Realm.getDefaultInstance()
+        realm = getRealmInstance()
         realm!!.executeTransaction {
             realm!!.copyToRealmOrUpdate(station)
         }
-        realm!!.close()
+        closeRealmInstance()
     }
 
     override fun clearDatabase() {
-        realm = Realm.getDefaultInstance()
+        realm = getRealmInstance()
         realm!!.executeTransaction {
             realm!!.delete(StoragedStation::class.java)
         }
+        closeRealmInstance()
+    }
+
+    private fun closeRealmInstance() {
         realm!!.close()
     }
+
+    private fun getRealmInstance() = Realm.getDefaultInstance()
 }
