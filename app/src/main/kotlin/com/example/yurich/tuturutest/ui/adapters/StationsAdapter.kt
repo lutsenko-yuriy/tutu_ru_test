@@ -13,13 +13,12 @@ import com.example.yurich.tuturutest.ui.OnStationListener
 class StationsAdapter(listener: OnStationListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var adapters = SparseArrayCompat<AbstractAdapterDelegate>()
-    private var items: MutableList<DisplayedEntity>
+    private var items: MutableList<DisplayedEntity> = mutableListOf()
 
     init {
         adapters.put(DisplayedEntity.CITY, HeaderAdapterDelegate())
         adapters.put(DisplayedEntity.STATION, StationAdapterDelegate(listener))
 
-        items = mutableListOf()
     }
     override fun getItemCount() = items.size
 

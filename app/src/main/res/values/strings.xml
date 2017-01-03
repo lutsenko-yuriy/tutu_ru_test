@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">Туту.ру - Тест</string>
+    <string name="app_name">Tutu.ru - Test</string>
 
     <!--Information about app-->
     <string name="info_description">
-        Приложение, выполненное в рамках тестового задания для компании Туту.ру.
+        A test application for Tutu.ru company
     </string>
     <string name="info_copyright">
-        Юрий Луценко, 2016
+        Yuriy Lutsenko, 2017
     </string>
     <string name="info_version">
         Version 1.0
@@ -14,11 +14,11 @@
 
     <!--Navigation drawer-->
     <string name="menu_routes">
-        Выбор маршрута
+        Route choosing
     </string>
 
     <string name="menu_info">
-        Информация о приложении
+        App info
     </string>
 
     <!--Navigation drawer behaviour-->
@@ -31,16 +31,25 @@
 
     <!--Menu-->
     <string name="action_refresh">
-        Обновить
+        Refresh
     </string>
 
     <!--Default parameters for screens with listed responseStations-->
-    <string name="default_station_name">Вокзал</string>
-    <string name="default_country_name">Страна</string>
-    <string name="default_address">Адрес</string>
+    <string name="default_station_name">Station</string>
+    <string name="default_country_name">Country</string>
+    <string name="default_address">Address</string>
     <string name="station_font">sans-serif</string>
-    <string name="group_title">Страна, город</string>
+    <string name="group_title">Country, city</string>
 
     <!--A hint for query search in departure responseStations screen-->
-    <string name="departure_hint">Введите станцию отправления</string>
+    <string name="departure_hint">Insert departure station</string>
+
+    <!--Service messages-->
+    <string name="loading_stations">Stations loading…</string>
+    <string name="error_message">Error occurred while loading. Please try again</string>
+
+    <!--Tab titles-->
+    <string name="departure_stations">Departure stations</string>
+    <string name="arrival_stations">Arrival stations</string>
+    <string name="dates">Dates</string>
 </resources>

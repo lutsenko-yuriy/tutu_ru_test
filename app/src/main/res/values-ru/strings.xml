@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">Туту.ру - Тест</string>
+
+    <!--Information about app-->
+    <string name="info_description">
+        Приложение, выполненное в рамках тестового задания для компании Туту.ру.
+    </string>
+    <string name="info_copyright">
+        Юрий Луценко, 2016
+    </string>
+    <string name="info_version">
+        Версия 1.0
+    </string>
+
+    <!--Navigation drawer-->
+    <string name="menu_routes">
+        Выбор маршрута
+    </string>
+
+    <string name="menu_info">
+        Информация о приложении
+    </string>
+
+    <!--Navigation drawer behaviour-->
+    <string name="navigation_drawer_open">
+
+    </string>
+    <string name="navigation_drawer_close">
+
+    </string>
+
+    <!--Menu-->
+    <string name="action_refresh">
+        Обновить
+    </string>
+
+    <!--Default parameters for screens with listed responseStations-->
+    <string name="default_station_name">Вокзал</string>
+    <string name="default_country_name">Страна</string>
+    <string name="default_address">Адрес</string>
+    <string name="station_font">sans-serif</string>
+    <string name="group_title">Страна, город</string>
+
+    <!--A hint for query search in departure responseStations screen-->
+    <string name="departure_hint">Введите станцию отправления</string>
+
+    <!--Service messages-->
+    <string name="loading_stations">Идет загрузка станций…</string>
+    <string name="error_message">При загрузке данных произошла ошибка. Попробуйте еще раз</string>
+
+    <!--Tab titles-->
+    <string name="departure_stations">Станции отправления</string>
+    <string name="arrival_stations">Станции назначения</string>
+    <string name="dates">Даты</string>
+</resources>

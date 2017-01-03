@@ -19,8 +19,9 @@ class ScheduleFragment : Fragment() {
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val pagerAdapter = ScheduleAdapter(activity.supportFragmentManager)
+        val pagerAdapter = ScheduleAdapter(activity, activity.supportFragmentManager)
         viewpager.adapter = pagerAdapter
         tabs.setupWithViewPager(viewpager)
     }
+
 }

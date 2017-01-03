@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Amount of stations loaded-->
+    <plurals name="stations">
+        <item quantity="one">Загружена %d станция</item>
+        <item quantity="few">Загружено %d станции</item>
+        <item quantity="many">Загружено %d станций</item>
+        <item quantity="other">Загружено %d станций</item>
+    </plurals>
+</resources>

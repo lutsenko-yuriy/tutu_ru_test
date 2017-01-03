@@ -1,6 +1,6 @@
 package com.example.yurich.tuturutest.di
 
-import com.example.yurich.tuturutest.splash_fragment.RetainFragment
+import com.example.yurich.tuturutest.splash.RetainFragment
 import dagger.Subcomponent
 
 /**
