@@ -12,6 +12,9 @@
         android:hint="@string/departure_hint"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:inputType="text"
+        android:scrollHorizontally="true"
         android:maxLines="1" />
 
     <android.support.v7.widget.RecyclerView
