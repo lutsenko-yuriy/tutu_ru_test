@@ -13,6 +13,7 @@ import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.mvp.ScheduleView
 import com.example.yurich.tuturutest.repository.ResultQuery
 import com.example.yurich.tuturutest.result_alert_dialog_fragment.ResultAlertDialogFragment
+import com.example.yurich.tuturutest.schedule.MainActivity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedStation
 import com.example.yurich.tuturutest.ui.OnStationListener
@@ -61,19 +62,17 @@ class DepartureFragment : MvpAppCompatFragment(), ScheduleView, OnStationListene
 
     override fun onStationClicked(station: DisplayedStation) {
         presenter.passStation(station)
-        Snackbar.make(list_of_stations, "Станция отправления успешно добавлена", Snackbar.LENGTH_LONG).show()
+        Snackbar.make(list_of_stations, getString(R.string.departure_added), Snackbar.LENGTH_LONG).show()
     }
 
     override fun onStationsLoaded() {
-        if (!subscriptions.hasSubscriptions()) {
-            subscriptions.add(RxTextView.textChanges(search_field)
-                    .debounce(1000, TimeUnit.MILLISECONDS)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        presenter.retrieveAndShow(it.toString())
-                    }
-            )
-        }
+        subscriptions.add(RxTextView.textChanges(search_field)
+                .debounce(200, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    presenter.retrieveAndShow(it.toString())
+                }
+        )
     }
 
 
@@ -98,6 +97,6 @@ class DepartureFragment : MvpAppCompatFragment(), ScheduleView, OnStationListene
     }
 
     override fun displayResult(query: ResultQuery) {
-        ResultAlertDialogFragment(query).show(activity.fragmentManager, null)
+        (activity as MainActivity).displayResults(query)
     }
 }

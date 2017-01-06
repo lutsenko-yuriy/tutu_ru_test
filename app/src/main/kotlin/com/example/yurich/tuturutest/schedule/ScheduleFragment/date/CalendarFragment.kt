@@ -14,6 +14,7 @@ import com.example.yurich.tuturutest.mvp.ScheduleView
 import com.example.yurich.tuturutest.repository.ResultQuery
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
 import com.example.yurich.tuturutest.result_alert_dialog_fragment.ResultAlertDialogFragment
+import com.example.yurich.tuturutest.schedule.MainActivity
 import kotlinx.android.synthetic.main.fragment_calendar.*
 import kotlinx.android.synthetic.main.fragment_stations_list.*
 import java.util.*
@@ -42,12 +43,13 @@ class CalendarFragment : MvpAppCompatFragment(), ScheduleView {
 
             val chosenDate = GregorianCalendar(year, month, day)
             calendar.date = chosenDate.timeInMillis
+            Snackbar.make(calendar, getString(R.string.date_added), Snackbar.LENGTH_LONG).show()
             presenter.passDate(chosenDate)
         }
     }
 
     override fun displayResult(query: ResultQuery) {
-        ResultAlertDialogFragment(query).show(activity.fragmentManager, null)
+        (activity as MainActivity).displayResults(query)
     }
 
     override fun updateStations(entities: List<DisplayedEntity>) {

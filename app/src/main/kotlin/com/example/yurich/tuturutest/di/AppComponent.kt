@@ -1,6 +1,12 @@
 package com.example.yurich.tuturutest.di
 
 import com.example.yurich.tuturutest.di.Modules.*
+import com.example.yurich.tuturutest.di.subcomponents.MainActivityComponent
+import com.example.yurich.tuturutest.di.subcomponents.MainActivityModule
+import com.example.yurich.tuturutest.di.subcomponents.SplashActivityComponent
+import com.example.yurich.tuturutest.di.subcomponents.SplashActivityModule
+import com.example.yurich.tuturutest.schedule.MainActivity
+import com.example.yurich.tuturutest.splash.SplashActivity
 import dagger.Component
 import javax.inject.Singleton
 
@@ -16,6 +22,6 @@ import javax.inject.Singleton
         ResultQueryModule::class
 ))
 interface AppComponent {
-    fun plusMainActivity(): MainActivityComponent
-    fun plusSplashActivity(): SplashActivityComponent
+    fun plus(module: MainActivityModule): MainActivityComponent
+    fun plus(module: SplashActivityModule): SplashActivityComponent
 }

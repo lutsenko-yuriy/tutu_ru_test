@@ -1,8 +1,11 @@
 package com.example.yurich.tuturutest.schedule.ScheduleFragment
 
+import android.os.Parcel
+import android.os.Parcelable
 import android.text.TextUtils
 import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
 import com.example.yurich.tuturutest.utils.DirectionConstants.DEPARTURE
+import java.io.Serializable
 
 /**
  * The DisplayedStation entity will be stored at databases
@@ -65,7 +68,7 @@ class DisplayedStation(
         val stationTitle: String,
 
         val direction: Int = DEPARTURE
-) : DisplayedEntity(){
+) : DisplayedEntity() {
 
     constructor(station: StoragedStation) :
             this(

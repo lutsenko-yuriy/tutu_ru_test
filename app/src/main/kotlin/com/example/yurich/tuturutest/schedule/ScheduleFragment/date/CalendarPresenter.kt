@@ -30,10 +30,7 @@ class CalendarPresenter : MvpPresenter<ScheduleView>() {
     fun passDate(date: GregorianCalendar) {
         resultQuery.date = date
         Log.v("Repo", resultQuery.toString())
-        if (resultQuery.isReady()) {
-            viewState.displayResult(resultQuery)
-        }
+        viewState.displayResult(resultQuery)
     }
 
-    fun  isDateChosen() = resultQuery.date != null
 }

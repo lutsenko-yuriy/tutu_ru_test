@@ -64,9 +64,7 @@ class DeparturePresenter : SchedulePresenter() {
     override fun passStation(station: DisplayedStation) {
         resultQuery.departureStation = station
         Log.v("Repo", resultQuery.toString())
-        if (resultQuery.isReady()) {
-            viewState.displayResult(resultQuery)
-        }
+        viewState.displayResult(resultQuery)
     }
 
 }

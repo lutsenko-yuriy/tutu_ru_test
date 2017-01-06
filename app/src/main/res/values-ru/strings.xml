@@ -52,4 +52,15 @@
     <string name="departure_stations">Станции отправления</string>
     <string name="arrival_stations">Станции назначения</string>
     <string name="dates">Даты</string>
+
+    <!--Confirmation buttons-->
+    <string name="exactly">Именно так!</string>
+    <string name="refresh_question">Процесс загрузки может занять некоторое время. Вы уверены?</string>
+    <string name="confirm">Да</string>
+    <string name="deny">Нет</string>
+
+    <!--Confirmation messages-->
+    <string name="departure_added">Станция отправления успешно добавлена</string>
+    <string name="arrival_added">Станция прибытия успешно добавлена</string>
+    <string name="date_added">Дата успешно добавлена</string>
 </resources>
