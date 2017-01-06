@@ -22,7 +22,6 @@ import com.jakewharton.rxbinding.widget.RxTextView
 import kotlinx.android.synthetic.main.fragment_stations_list.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
-import java.util.concurrent.TimeUnit
 
 
 /**
@@ -49,10 +48,16 @@ class ArrivalsFragment : MvpAppCompatFragment(), ScheduleView, OnStationListener
 
             adapter = StationsAdapter(this@ArrivalsFragment)
         }
+
+        subscriptions.add(RxTextView.textChanges(search_field)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    presenter.retrieveAndShow(it.toString())
+                }
+        )
     }
 
     override fun onPause() {
-        subscriptions.unsubscribe()
         super.onPause()
     }
 
@@ -62,10 +67,10 @@ class ArrivalsFragment : MvpAppCompatFragment(), ScheduleView, OnStationListener
     }
 
     override fun displayStations(entities: List<DisplayedEntity>) {
-        if ((list_of_stations.adapter as StationsAdapter).itemCount > 0) {
-            updateStations(entities)
-        } else {
+        if ((list_of_stations.adapter as StationsAdapter).itemCount == 0) {
             setupStations(entities)
+        } else {
+            updateStations(entities)
         }
     }
 
@@ -77,22 +82,12 @@ class ArrivalsFragment : MvpAppCompatFragment(), ScheduleView, OnStationListener
         (list_of_stations.adapter as StationsAdapter).updateStations(entities)
     }
 
-    override fun displayError(it: String) {
+    override fun displayError(it: Int) {
         Snackbar.make(list_of_stations, it, Snackbar.LENGTH_LONG).show()
     }
 
     override fun displayResult(query: ResultQuery) {
         (activity as MainActivity).displayResults(query)
-    }
-
-    override fun onStationsLoaded() {
-        subscriptions.add(RxTextView.textChanges(search_field)
-                .debounce(200, TimeUnit.MILLISECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    presenter.retrieveAndShow(it.toString())
-                }
-        )
     }
 }
 

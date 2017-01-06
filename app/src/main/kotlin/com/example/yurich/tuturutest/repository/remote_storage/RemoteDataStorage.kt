@@ -12,13 +12,10 @@ import javax.inject.Singleton
 @Singleton
 class RemoteDataStorage @Inject constructor(val server: StationsApi) {
 
-    fun getStations(): Observable<StoragedStation> {
+    fun getStations(): Observable<List<StoragedStation>> {
 
         return server.getStationsList()
-                .concatMap {
-                    Observable.from(it.getStoragedStations())
-                }
-                .subscribeOn(Schedulers.io())
+                .map(ServerResponse::getStoragedStations)
     }
 
 }

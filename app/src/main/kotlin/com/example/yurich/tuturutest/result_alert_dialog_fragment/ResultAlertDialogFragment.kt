@@ -14,12 +14,14 @@ class ResultAlertDialogFragment() : DialogFragment() {
 
     var query: ResultQuery? = null
 
-    fun newInstance(query: ResultQuery): ResultAlertDialogFragment {
-        val fragment = ResultAlertDialogFragment()
-        val bundle = Bundle()
-        bundle.putSerializable("query", query)
-        fragment.arguments = bundle
-        return fragment
+    companion object {
+        fun newInstance(query: ResultQuery): ResultAlertDialogFragment {
+            val fragment = ResultAlertDialogFragment()
+            val bundle = Bundle()
+            bundle.putSerializable("query", query)
+            fragment.arguments = bundle
+            return fragment
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

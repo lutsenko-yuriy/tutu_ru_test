@@ -63,4 +63,6 @@
     <string name="departure_added">Станция отправления успешно добавлена</string>
     <string name="arrival_added">Станция прибытия успешно добавлена</string>
     <string name="date_added">Дата успешно добавлена</string>
+
+    <string name="loading_fail">Не удалось загрузить станции</string>
 </resources>

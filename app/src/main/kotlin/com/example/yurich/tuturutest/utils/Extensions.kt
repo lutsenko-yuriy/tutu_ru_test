@@ -27,7 +27,7 @@ fun Context.fromLocalDb(): Boolean {
     return fromLocalDb
 }
 
-fun Context.isDbReseted(value: Boolean = false) {
+fun Context.setDbUpdated(value: Boolean = false) {
     val editor = this.getSharedPreferences("fromLocalDb", Context.MODE_PRIVATE).edit()
     editor.putBoolean("fromLocalDb", value)
     editor.apply()

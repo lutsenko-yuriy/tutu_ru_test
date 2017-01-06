@@ -52,10 +52,6 @@ class CalendarFragment : MvpAppCompatFragment(), ScheduleView {
         (activity as MainActivity).displayResults(query)
     }
 
-    override fun updateStations(entities: List<DisplayedEntity>) {
-        // Nothing to do here
-    }
-
     override fun displayStations(entities: List<DisplayedEntity>) {
         // Nothing to do here
     }
@@ -64,11 +60,11 @@ class CalendarFragment : MvpAppCompatFragment(), ScheduleView {
         // Nothing to do here
     }
 
-    override fun displayError(it: String) {
+    override fun updateStations(entities: List<DisplayedEntity>) {
         // Nothing to do here
     }
 
-    override fun onStationsLoaded() {
-        // Nothing to do
+    override fun displayError(it: Int) {
+        // Nothing to do here
     }
 }

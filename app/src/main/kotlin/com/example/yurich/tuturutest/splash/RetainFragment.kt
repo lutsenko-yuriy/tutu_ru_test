@@ -7,7 +7,7 @@ import android.util.Log
 import com.example.yurich.tuturutest.repository.Repository
 import com.example.yurich.tuturutest.schedule.MainActivity
 import com.example.yurich.tuturutest.utils.fromLocalDb
-import com.example.yurich.tuturutest.utils.isDbReseted
+import com.example.yurich.tuturutest.utils.setDbUpdated
 import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
@@ -15,7 +15,7 @@ import javax.inject.Inject
 /**
  * Created by yurich on 02.01.17.
  */
-class RetainFragment: Fragment() {
+class RetainFragment: Fragment(), Repository.LoadingProgressListener {
 
     @Inject
     lateinit var repository: Repository
@@ -31,10 +31,6 @@ class RetainFragment: Fragment() {
 
     var currentState = STATE_LOADING
 
-    var stationsAmount = 0
-
-    val subscriptions = CompositeSubscription()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
@@ -45,37 +41,16 @@ class RetainFragment: Fragment() {
 
     fun loadData() {
         val fromLocalDb = activity.fromLocalDb()
-        if (fromLocalDb) {
-            changeActivity()
-        } else {
-            subscriptions.add(repository.getStations(fromLocalDb)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            {
-                                stationsAmount++
-                                (activity as SplashActivity).displayProgress(stationsAmount)
-                            },
-                            {
-                                (activity as SplashActivity).displayError()
-                                currentState = STATE_ERROR
-                            },
-                            {
-                                activity.isDbReseted(true)
-                                changeActivity()
-                            }
-                    ))
-        }
+        repository.refreshCachedStations(fromLocalDb, this)
     }
 
-    private fun changeActivity() {
+    override fun onDone() {
+        activity.setDbUpdated(true)
         startActivity(Intent(activity, MainActivity::class.java))
         activity.finish()
     }
 
-    override fun onDestroy() {
-        if (!subscriptions.isUnsubscribed) {
-            subscriptions.unsubscribe()
-        }
-        super.onDestroy()
+    override fun onError() {
+        (activity as SplashActivity).displayError()
     }
 }

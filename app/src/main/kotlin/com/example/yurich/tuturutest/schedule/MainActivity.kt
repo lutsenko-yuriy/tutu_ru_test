@@ -20,7 +20,7 @@ import com.example.yurich.tuturutest.navigation.NavigationManagerImpl
 import com.example.yurich.tuturutest.repository.ResultQuery
 import com.example.yurich.tuturutest.result_alert_dialog_fragment.ResultAlertDialogFragment
 import com.example.yurich.tuturutest.splash.SplashActivity
-import com.example.yurich.tuturutest.utils.isDbReseted
+import com.example.yurich.tuturutest.utils.setDbUpdated
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(),
@@ -108,12 +108,12 @@ class MainActivity : AppCompatActivity(),
 
     fun displayResults(query: ResultQuery) {
         if (query.isReady()) {
-            ResultAlertDialogFragment().newInstance(query).show(fragmentManager, "resultDialog")
+            ResultAlertDialogFragment.newInstance(query).show(fragmentManager, "resultDialog")
         }
     }
 
     override fun onConfirmRefresh() {
-        applicationContext.isDbReseted()
+        applicationContext.setDbUpdated()
         startActivity(Intent(this, SplashActivity::class.java))
     }
 

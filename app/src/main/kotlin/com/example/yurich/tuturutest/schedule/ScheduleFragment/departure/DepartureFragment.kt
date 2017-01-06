@@ -4,6 +4,7 @@ package com.example.yurich.tuturutest.schedule.ScheduleFragment.departure
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.LinearLayoutManager
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +33,7 @@ import java.util.concurrent.TimeUnit
 
 class DepartureFragment : MvpAppCompatFragment(), ScheduleView, OnStationListener {
 
-    val subscriptions = CompositeSubscription()
+    var subscriptions = CompositeSubscription()
 
     @InjectPresenter
     lateinit var presenter: DeparturePresenter
@@ -51,23 +52,8 @@ class DepartureFragment : MvpAppCompatFragment(), ScheduleView, OnStationListene
 
             adapter = StationsAdapter(this@DepartureFragment)
         }
-    }
 
-    override fun onPause() {
-        if (!subscriptions.hasSubscriptions()) {
-            subscriptions.unsubscribe()
-        }
-        super.onPause()
-    }
-
-    override fun onStationClicked(station: DisplayedStation) {
-        presenter.passStation(station)
-        Snackbar.make(list_of_stations, getString(R.string.departure_added), Snackbar.LENGTH_LONG).show()
-    }
-
-    override fun onStationsLoaded() {
         subscriptions.add(RxTextView.textChanges(search_field)
-                .debounce(200, TimeUnit.MILLISECONDS)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     presenter.retrieveAndShow(it.toString())
@@ -75,12 +61,23 @@ class DepartureFragment : MvpAppCompatFragment(), ScheduleView, OnStationListene
         )
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (!subscriptions.isUnsubscribed) {
+            subscriptions.unsubscribe()
+        }
+    }
+
+    override fun onStationClicked(station: DisplayedStation) {
+        presenter.passStation(station)
+        Snackbar.make(list_of_stations, getString(R.string.departure_added), Snackbar.LENGTH_LONG).show()
+    }
 
     override fun displayStations(entities: List<DisplayedEntity>) {
-        if ((list_of_stations.adapter as StationsAdapter).itemCount > 0) {
-            updateStations(entities)
-        } else {
+        if ((list_of_stations.adapter as StationsAdapter).itemCount == 0) {
             setupStations(entities)
+        } else {
+            updateStations(entities)
         }
     }
 
@@ -92,7 +89,7 @@ class DepartureFragment : MvpAppCompatFragment(), ScheduleView, OnStationListene
         (list_of_stations.adapter as StationsAdapter).updateStations(entities)
     }
 
-    override fun displayError(it: String) {
+    override fun displayError(it: Int) {
         Snackbar.make(list_of_stations, it, Snackbar.LENGTH_LONG).show()
     }
 

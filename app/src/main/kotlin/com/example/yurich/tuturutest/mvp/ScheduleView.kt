@@ -1,5 +1,6 @@
 package com.example.yurich.tuturutest.mvp
 
+import android.support.annotation.StringRes
 import com.arellomobile.mvp.MvpView
 import com.example.yurich.tuturutest.repository.ResultQuery
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
@@ -12,14 +13,10 @@ interface ScheduleView : MvpView {
     fun displayStations(entities: List<DisplayedEntity>)
 
     fun setupStations(entities: List<DisplayedEntity>)
-
     fun updateStations(entities: List<DisplayedEntity>)
 
-    fun displayError(it: String)
+    fun displayError(@StringRes it: Int)
 
     fun displayResult(query: ResultQuery)
-
-
-    fun onStationsLoaded()
 
 }

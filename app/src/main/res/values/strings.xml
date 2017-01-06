@@ -64,6 +64,5 @@
     <string name="arrival_added">Arrival station added successfully</string>
     <string name="date_added">Date added successfully</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="loading_fail">Failed to load stations</string>
 </resources>

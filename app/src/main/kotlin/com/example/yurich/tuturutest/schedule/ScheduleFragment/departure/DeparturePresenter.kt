@@ -1,6 +1,5 @@
 package com.example.yurich.tuturutest.schedule.ScheduleFragment.departure
 
-import android.text.TextUtils
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
 import com.example.yurich.tuturutest.mvp.SchedulePresenter
@@ -10,8 +9,6 @@ import com.example.yurich.tuturutest.schedule.MainActivity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedCity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedStation
-import com.example.yurich.tuturutest.utils.DirectionConstants.DEPARTURE
-import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 /**
@@ -30,35 +27,21 @@ class DeparturePresenter : SchedulePresenter() {
         MainActivity.subcomponent.inject(this)
     }
 
-    override fun retrieveAndShow(needle: String) {
+    override fun retrieveAndShow(filter: String) {
 
         val listOfEntities = mutableListOf<DisplayedEntity>()
         var currentCity: DisplayedCity? = null
 
-        subscriptions.add(
-                repository.getStations()
-                        .filter {
-                            it.direction == DEPARTURE
-                                    && (TextUtils.isEmpty(needle)
-                                    || it.stationTitle.contains(needle, true))
-                        }
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                {
-                                    if (currentCity == null || currentCity!!.cityId != it.cityId) {
-                                        currentCity = DisplayedCity(it)
-                                        listOfEntities.add(currentCity!!)
-                                    }
+        for (station in repository.getDepartureStations(filter).map(::DisplayedStation)) {
+            if (currentCity == null || currentCity.cityId != station.cityId) {
+                currentCity = DisplayedCity(station)
+                listOfEntities.add(currentCity)
+            }
 
-                                    listOfEntities.add(it)
-                                },
-                                { viewState.displayError("Не удалось отобразить станции") },
-                                {
-                                    viewState.displayStations(listOfEntities)
-                                    viewState.onStationsLoaded()
-                                }
-                        )
-        )
+            listOfEntities.add(station)
+        }
+
+        viewState.displayStations(listOfEntities)
     }
 
     override fun passStation(station: DisplayedStation) {

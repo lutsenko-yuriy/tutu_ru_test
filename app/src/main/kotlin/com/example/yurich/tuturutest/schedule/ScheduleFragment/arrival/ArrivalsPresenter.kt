@@ -3,6 +3,7 @@ package com.example.yurich.tuturutest.schedule.ScheduleFragment.arrival
 import android.text.TextUtils
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
+import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.mvp.SchedulePresenter
 import com.example.yurich.tuturutest.repository.Repository
 import com.example.yurich.tuturutest.repository.ResultQuery
@@ -30,34 +31,20 @@ class ArrivalsPresenter : SchedulePresenter() {
         MainActivity.subcomponent.inject(this)
     }
 
-    override fun retrieveAndShow(needle: String) {
+    override fun retrieveAndShow(filter: String) {
         val listOfEntities = mutableListOf<DisplayedEntity>()
         var currentCity: DisplayedCity? = null
 
-        subscriptions.add(
-                repository.getStations()
-                        .filter {
-                            it.direction == ARRIVAL
-                                    && (TextUtils.isEmpty(needle)
-                                    || it.stationTitle.contains(needle, true))
-                        }
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                {
-                                    if (currentCity == null || currentCity!!.cityId != it.cityId) {
-                                        currentCity = DisplayedCity(it)
-                                        listOfEntities.add(currentCity!!)
-                                    }
+        for (station in repository.getArrivalStations(filter).map(::DisplayedStation)) {
+            if (currentCity == null || currentCity.cityId != station.cityId) {
+                currentCity = DisplayedCity(station)
+                listOfEntities.add(currentCity)
+            }
 
-                                    listOfEntities.add(it)
-                                },
-                                { viewState.displayError("Не удалось отобразить станции") },
-                                {
-                                    viewState.displayStations(listOfEntities)
-                                    viewState.onStationsLoaded()
-                                }
-                        )
-        )
+            listOfEntities.add(station)
+        }
+
+        viewState.displayStations(listOfEntities)
     }
 
     override fun passStation(station: DisplayedStation) {

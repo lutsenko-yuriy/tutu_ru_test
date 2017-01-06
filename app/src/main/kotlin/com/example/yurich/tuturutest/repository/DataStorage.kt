@@ -9,9 +9,9 @@ import rx.Observable
  */
 interface DataStorage {
 
-    fun getStations(): Observable<StoragedStation>
+    fun getStations(): Observable<List<StoragedStation>>
 
-    fun putStation(station: StoragedStation)
+    fun putStations(stations: List<StoragedStation>)
 
     fun clearDatabase()
 

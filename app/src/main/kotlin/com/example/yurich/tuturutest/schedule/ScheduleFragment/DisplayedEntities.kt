@@ -68,7 +68,7 @@ class DisplayedStation(
         val stationTitle: String,
 
         val direction: Int = DEPARTURE
-) : DisplayedEntity() {
+) : DisplayedEntity(), Serializable {
 
     constructor(station: StoragedStation) :
             this(

@@ -16,7 +16,7 @@ class LocalDataStorage @Inject constructor() : DataStorage {
 
     var realm: Realm? = null
 
-    override fun getStations(): Observable<StoragedStation> {
+    override fun getStations(): Observable<List<StoragedStation>> {
         return Observable.create<RealmResults<StoragedStation>> {
             subscriber ->
 
@@ -30,19 +30,15 @@ class LocalDataStorage @Inject constructor() : DataStorage {
             } catch (e: Throwable) {
                 subscriber.onError(e)
             }
-        }.concatMap {
-            Observable.from(it)
-        }.doOnCompleted {
-            closeRealmInstance()
-        }.doOnError {
-            closeRealmInstance()
+        }.map {
+            it.toList()
         }
     }
 
-    override fun putStation(station: StoragedStation) {
+    override fun putStations(stations: List<StoragedStation>) {
         realm = getRealmInstance()
         realm!!.executeTransaction {
-            realm!!.copyToRealmOrUpdate(station)
+            realm!!.copyToRealmOrUpdate(stations)
         }
         closeRealmInstance()
     }

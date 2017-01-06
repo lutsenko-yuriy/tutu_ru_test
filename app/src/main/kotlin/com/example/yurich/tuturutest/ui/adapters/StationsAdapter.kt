@@ -3,8 +3,11 @@ package com.example.yurich.tuturutest.ui.adapters
 import android.support.v4.util.SparseArrayCompat
 import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
+import android.text.TextUtils
 import android.view.ViewGroup
+import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedCity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
+import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedStation
 import com.example.yurich.tuturutest.ui.OnStationListener
 
 /**
