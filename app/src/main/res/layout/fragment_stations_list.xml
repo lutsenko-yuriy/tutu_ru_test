@@ -19,6 +19,8 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_of_stations"
+        android:layout_marginStart="@dimen/stations_list_side"
+        android:layout_marginEnd="@dimen/stations_list_side"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

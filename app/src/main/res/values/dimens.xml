@@ -10,8 +10,10 @@
     <dimen name="address_margin">4dp</dimen>
     <dimen name="station_title_size">24sp</dimen>
     <dimen name="address_size">16sp</dimen>
-    <dimen name="station_card_space">8dp</dimen>
+    <dimen name="station_card_space_top">8dp</dimen>
+    <dimen name="station_card_space_side">4dp</dimen>
     <dimen name="station_card_elevation">4dp</dimen>
+    <dimen name="stations_list_side">4dp</dimen>
 
     <!--Header margins-->
     <dimen name="header_top_margin">24dp</dimen>

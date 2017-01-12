@@ -4,5 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorText">#000000</color>
-    <color name="colorTextWhite">#FFFFFF</color>
+
+    <color name="colorTextTabChosen">#FFFFFFFF</color>
+    <color name="colorTextTabUnchosen">#B4FFFFFF</color>
 </resources>

@@ -4,7 +4,6 @@ import com.example.yurich.tuturutest.repository.DataStorage
 import io.realm.Realm
 import io.realm.RealmResults
 import rx.Observable
-import rx.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
 

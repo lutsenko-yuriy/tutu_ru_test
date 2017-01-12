@@ -1,7 +1,5 @@
 package com.example.yurich.tuturutest.schedule.ScheduleFragment
 
-import android.os.Parcel
-import android.os.Parcelable
 import android.text.TextUtils
 import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
 import com.example.yurich.tuturutest.utils.DirectionConstants.DEPARTURE

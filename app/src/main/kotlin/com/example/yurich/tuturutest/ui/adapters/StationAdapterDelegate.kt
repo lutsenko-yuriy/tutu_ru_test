@@ -23,6 +23,10 @@ class StationAdapterDelegate(val listener: OnStationListener) : AbstractAdapterD
         (holder as StationHolder).bind(item as DisplayedStation)
     }
 
+    override fun getSpanSize(): Int {
+        return 1
+    }
+
     inner class StationHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             parent.inflate(R.layout.item_station)
     ) {

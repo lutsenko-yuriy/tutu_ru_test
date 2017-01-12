@@ -3,8 +3,6 @@ package com.example.yurich.tuturutest.schedule.ScheduleFragment.departure
 
 import android.os.Bundle
 import android.support.design.widget.Snackbar
-import android.support.v7.widget.LinearLayoutManager
-import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,17 +11,16 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.mvp.ScheduleView
 import com.example.yurich.tuturutest.repository.ResultQuery
-import com.example.yurich.tuturutest.result_alert_dialog_fragment.ResultAlertDialogFragment
 import com.example.yurich.tuturutest.schedule.MainActivity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedStation
 import com.example.yurich.tuturutest.ui.OnStationListener
 import com.example.yurich.tuturutest.ui.adapters.StationsAdapter
+import com.example.yurich.tuturutest.utils.initialize
 import com.jakewharton.rxbinding.widget.RxTextView
 import kotlinx.android.synthetic.main.fragment_stations_list.*
 import rx.android.schedulers.AndroidSchedulers
 import rx.subscriptions.CompositeSubscription
-import java.util.concurrent.TimeUnit
 
 
 /**
@@ -47,11 +44,7 @@ class DepartureFragment : MvpAppCompatFragment(), ScheduleView, OnStationListene
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        list_of_stations.apply {
-            layoutManager = LinearLayoutManager(activity)
-
-            adapter = StationsAdapter(this@DepartureFragment)
-        }
+        list_of_stations.initialize(activity, this)
 
         subscriptions.add(RxTextView.textChanges(search_field)
                 .observeOn(AndroidSchedulers.mainThread())

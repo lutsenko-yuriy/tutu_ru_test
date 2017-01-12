@@ -8,8 +8,6 @@ import com.example.yurich.tuturutest.repository.Repository
 import com.example.yurich.tuturutest.schedule.MainActivity
 import com.example.yurich.tuturutest.utils.fromLocalDb
 import com.example.yurich.tuturutest.utils.setDbUpdated
-import rx.android.schedulers.AndroidSchedulers
-import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 
 /**

@@ -1,9 +1,7 @@
 package com.example.yurich.tuturutest.schedule.ScheduleFragment.arrival
 
-import android.text.TextUtils
 import android.util.Log
 import com.arellomobile.mvp.InjectViewState
-import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.mvp.SchedulePresenter
 import com.example.yurich.tuturutest.repository.Repository
 import com.example.yurich.tuturutest.repository.ResultQuery
@@ -11,8 +9,6 @@ import com.example.yurich.tuturutest.schedule.MainActivity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedCity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
 import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedStation
-import com.example.yurich.tuturutest.utils.DirectionConstants.ARRIVAL
-import rx.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
 /**

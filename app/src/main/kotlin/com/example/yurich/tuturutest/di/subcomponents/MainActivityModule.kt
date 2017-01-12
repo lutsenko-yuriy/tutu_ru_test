@@ -1,6 +1,5 @@
 package com.example.yurich.tuturutest.di.subcomponents
 
-import android.support.v7.app.AppCompatActivity
 import com.example.yurich.tuturutest.di.ActivityScope
 import com.example.yurich.tuturutest.schedule.MainActivity
 import dagger.Module

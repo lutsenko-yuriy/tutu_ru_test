@@ -2,7 +2,6 @@ package com.example.yurich.tuturutest.repository.remote_storage
 
 import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
 import rx.Observable
-import rx.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
 

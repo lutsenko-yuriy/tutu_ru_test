@@ -1,8 +1,6 @@
 package com.example.yurich.tuturutest.repository.remote_storage
 
-import android.text.TextUtils
 import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
-import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedStation
 import com.example.yurich.tuturutest.utils.DirectionConstants
 
 /**

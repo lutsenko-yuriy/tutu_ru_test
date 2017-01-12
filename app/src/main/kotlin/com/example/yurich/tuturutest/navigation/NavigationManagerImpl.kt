@@ -2,9 +2,9 @@ package com.example.yurich.tuturutest.navigation
 
 import android.support.v4.app.FragmentManager
 import com.example.yurich.tuturutest.R
-import com.example.yurich.tuturutest.schedule.ScheduleFragment.ScheduleFragment
 import com.example.yurich.tuturutest.ScreenChanger
 import com.example.yurich.tuturutest.information.InfoFragment
+import com.example.yurich.tuturutest.schedule.ScheduleFragment.ScheduleFragment
 
 /**
  * Created by yurich on 14.12.16.

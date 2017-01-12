@@ -1,7 +1,6 @@
 package com.example.yurich.tuturutest.di.subcomponents
 
 import com.example.yurich.tuturutest.di.ActivityScope
-import com.example.yurich.tuturutest.schedule.MainActivity
 import com.example.yurich.tuturutest.splash.SplashActivity
 import dagger.Module
 import dagger.Provides

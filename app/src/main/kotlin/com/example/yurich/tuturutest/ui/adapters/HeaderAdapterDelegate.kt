@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.item_header.view.*
 /**
  * An adapter delegate for headers
  */
-class HeaderAdapterDelegate() : AbstractAdapterDelegate {
+class HeaderAdapterDelegate(val spanWidth: Int) : AbstractAdapterDelegate {
 
     override fun onCreateViewHolder(parent: ViewGroup): RecyclerView.ViewHolder {
         return HeaderHolder(parent)
@@ -19,6 +19,10 @@ class HeaderAdapterDelegate() : AbstractAdapterDelegate {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: DisplayedEntity) {
         (holder as HeaderHolder).bind(item as DisplayedCity)
+    }
+
+    override fun getSpanSize(): Int {
+        return spanWidth
     }
 
     inner class HeaderHolder(parent: ViewGroup) : RecyclerView.ViewHolder(

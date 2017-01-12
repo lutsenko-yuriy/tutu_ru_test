@@ -5,8 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.StationsApp
-import com.example.yurich.tuturutest.di.subcomponents.SplashActivityModule
 import com.example.yurich.tuturutest.di.subcomponents.SplashActivityComponent
+import com.example.yurich.tuturutest.di.subcomponents.SplashActivityModule
 import com.example.yurich.tuturutest.splash.RetainFragment.Companion.STATE_ERROR
 import kotlinx.android.synthetic.main.splash_screen.*
 

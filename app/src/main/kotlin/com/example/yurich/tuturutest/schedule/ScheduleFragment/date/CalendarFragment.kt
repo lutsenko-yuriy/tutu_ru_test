@@ -12,11 +12,9 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.example.yurich.tuturutest.R
 import com.example.yurich.tuturutest.mvp.ScheduleView
 import com.example.yurich.tuturutest.repository.ResultQuery
-import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
-import com.example.yurich.tuturutest.result_alert_dialog_fragment.ResultAlertDialogFragment
 import com.example.yurich.tuturutest.schedule.MainActivity
+import com.example.yurich.tuturutest.schedule.ScheduleFragment.DisplayedEntity
 import kotlinx.android.synthetic.main.fragment_calendar.*
-import kotlinx.android.synthetic.main.fragment_stations_list.*
 import java.util.*
 
 

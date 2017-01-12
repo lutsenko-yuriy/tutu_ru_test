@@ -15,4 +15,6 @@ interface AbstractAdapterDelegate {
 
     fun onBindViewHolder(holder: RecyclerView.ViewHolder, item: DisplayedEntity)
 
+    fun getSpanSize(): Int
+
 }
