@@ -9,7 +9,7 @@ import io.realm.Realm
 /**
  * Created by yurich on 17.12.16.
  */
-class StationsApp : Application() {
+open class StationsApp : Application() {
 
     companion object {
         lateinit var appComponent: AppComponent

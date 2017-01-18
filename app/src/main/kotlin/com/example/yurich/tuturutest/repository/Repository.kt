@@ -1,6 +1,7 @@
 package com.example.yurich.tuturutest.repository
 
 import android.util.Log
+import com.example.yurich.tuturutest.repository.cached_storage.CachedDataStorage
 import com.example.yurich.tuturutest.repository.local_storage.LocalDataStorage
 import com.example.yurich.tuturutest.repository.local_storage.StoragedStation
 import com.example.yurich.tuturutest.repository.remote_storage.RemoteDataStorage
@@ -8,6 +9,7 @@ import com.example.yurich.tuturutest.utils.DirectionConstants.ARRIVAL
 import com.example.yurich.tuturutest.utils.DirectionConstants.DEPARTURE
 import rx.Observable
 import rx.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -17,7 +19,8 @@ import javax.inject.Singleton
 @Singleton
 class Repository @Inject constructor(
         val remoteDataStorage: RemoteDataStorage,
-        val localDataStorage: LocalDataStorage
+        val localDataStorage: LocalDataStorage,
+        val cachedDataStorage: CachedDataStorage
 ) {
 
     interface LoadingProgressListener {
@@ -25,46 +28,36 @@ class Repository @Inject constructor(
         fun onError()
     }
 
-    var cachedDepartureStations = mutableListOf<StoragedStation>()
-    var cachedArrivalStations = mutableListOf<StoragedStation>()
-
-    fun getDepartureStations(filter: String): List<StoragedStation> {
-        return cachedDepartureStations
-                .filter {
-                    it.stationTitle.contains(filter, true)
-                }
+    fun getDepartureStations(filter: String = ""): List<StoragedStation> {
+        return cachedDataStorage.getDepartureStations(filter)
     }
 
-    fun getArrivalStations(filter: String): List<StoragedStation> {
-        return cachedArrivalStations
-                .filter {
-                    it.stationTitle.contains(filter, true)
-                }
+    fun getArrivalStations(filter: String = ""): List<StoragedStation> {
+        return cachedDataStorage.getArrivalStations(filter)
     }
 
-    fun refreshCachedStations(loadFromLocalDb: Boolean = true, listener: LoadingProgressListener) {
-        if (loadFromLocalDb) {
+    fun refreshCachedStations(loadFromLocalDb: Boolean = true, listener: LoadingProgressListener?) {
+        getStationsSource(loadFromLocalDb)
+                .subscribe(
+                        {
+                            cachedDataStorage.refreshCache(it)
+                        },
+                        {
+                            Log.e("REPOSITORY", "Error occurred while loading")
+                            listener?.onError()
+                        },
+                        {
+                            listener?.onDone()
+                        }
+                )
+    }
+
+    private fun getStationsSource(loadFromLocalDb: Boolean): Observable<List<StoragedStation>> {
+        return if (loadFromLocalDb) {
             getDataFromDatabase()
         } else {
             getDataFromServerAndUpdateDatabase()
         }
-                .subscribe(
-                        {
-                            cachedDepartureStations = mutableListOf<StoragedStation>()
-                            cachedArrivalStations = mutableListOf<StoragedStation>()
-
-                            cachedDepartureStations.addAll(it.filter{ it.direction == DEPARTURE })
-                            cachedArrivalStations.addAll(it.filter{ it.direction == ARRIVAL })
-                        },
-                        {
-                            Log.e("REPOSITORY", "Error occurred while loading")
-                            listener.onError()
-                        },
-                        {
-                            listener.onDone()
-
-                        }
-                )
     }
 
     private fun getDataFromServerAndUpdateDatabase(): Observable<List<StoragedStation>> {

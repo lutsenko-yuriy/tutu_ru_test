@@ -23,8 +23,8 @@ class RetainFragment: Fragment(), Repository.LoadingProgressListener {
         val STATE_ERROR = 1
     }
 
-    init {
-        SplashActivity.subcomponent.inject(this)
+    init{
+        SplashActivity.subcomponent!!.inject(this)
     }
 
     var currentState = STATE_LOADING
@@ -43,9 +43,7 @@ class RetainFragment: Fragment(), Repository.LoadingProgressListener {
     }
 
     override fun onDone() {
-        activity.setDbUpdated(true)
-        startActivity(Intent(activity, MainActivity::class.java))
-        activity.finish()
+        (activity as SplashActivity).onDone()
     }
 
     override fun onError() {
