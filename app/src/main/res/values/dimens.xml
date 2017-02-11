@@ -12,7 +12,8 @@
     <dimen name="address_size">16sp</dimen>
     <dimen name="station_card_space_top">8dp</dimen>
     <dimen name="station_card_space_side">4dp</dimen>
-    <dimen name="station_card_elevation">4dp</dimen>
+    <dimen name="station_card_elevation">0dp</dimen>
+    <dimen name="station_card_elevation_pressed">16dp</dimen>
     <dimen name="stations_list_side">4dp</dimen>
 
     <!--Header margins-->

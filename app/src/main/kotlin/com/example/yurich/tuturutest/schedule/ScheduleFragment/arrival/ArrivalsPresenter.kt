@@ -1,7 +1,6 @@
 package com.example.yurich.tuturutest.schedule.ScheduleFragment.arrival
 
 import android.util.Log
-import com.arellomobile.mvp.InjectViewState
 import com.example.yurich.tuturutest.mvp.SchedulePresenter
 import com.example.yurich.tuturutest.repository.Repository
 import com.example.yurich.tuturutest.repository.ResultQuery
@@ -14,7 +13,6 @@ import javax.inject.Inject
 /**
  * Created by yurich on 18.12.16.
  */
-@InjectViewState
 class ArrivalsPresenter : SchedulePresenter() {
 
     @Inject

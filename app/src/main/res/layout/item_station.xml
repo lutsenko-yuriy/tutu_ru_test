@@ -6,14 +6,14 @@
     android:layout_marginTop="@dimen/station_card_space_top"
     android:layout_marginStart="@dimen/station_card_space_side"
     android:layout_marginEnd="@dimen/station_card_space_side"
+    android:stateListAnimator="@animator/card_raise"
     app:cardElevation="@dimen/station_card_elevation" >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:layout_marginStart="@dimen/address_margin"
-        android:layout_marginEnd="@dimen/address_margin">
+        android:paddingStart="@dimen/address_margin"
+        android:paddingEnd="@dimen/address_margin">
 
         <TextView
             android:text="@string/default_station_name"
